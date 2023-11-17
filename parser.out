@@ -1,0 +1,121 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> declaration
+Rule 1     declaration -> FOR IDENTIFIER IN NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE
+Rule 2     declaration -> FOR IDENTIFIER IN IDENTIFIER FLOWEROPEN FLOWERCLOSE
+
+Terminals, with rules where they appear
+
+DOT                  : 1
+FLOWERCLOSE          : 1 2
+FLOWEROPEN           : 1 2
+FOR                  : 1 2
+IDENTIFIER           : 1 2 2
+IN                   : 1 2
+NUMBER               : 1 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+declaration          : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . declaration
+    (1) declaration -> . FOR IDENTIFIER IN NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE
+    (2) declaration -> . FOR IDENTIFIER IN IDENTIFIER FLOWEROPEN FLOWERCLOSE
+
+    FOR             shift and go to state 2
+
+    declaration                    shift and go to state 1
+
+state 1
+
+    (0) S' -> declaration .
+
+
+
+state 2
+
+    (1) declaration -> FOR . IDENTIFIER IN NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE
+    (2) declaration -> FOR . IDENTIFIER IN IDENTIFIER FLOWEROPEN FLOWERCLOSE
+
+    IDENTIFIER      shift and go to state 3
+
+
+state 3
+
+    (1) declaration -> FOR IDENTIFIER . IN NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE
+    (2) declaration -> FOR IDENTIFIER . IN IDENTIFIER FLOWEROPEN FLOWERCLOSE
+
+    IN              shift and go to state 4
+
+
+state 4
+
+    (1) declaration -> FOR IDENTIFIER IN . NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE
+    (2) declaration -> FOR IDENTIFIER IN . IDENTIFIER FLOWEROPEN FLOWERCLOSE
+
+    NUMBER          shift and go to state 6
+    IDENTIFIER      shift and go to state 5
+
+
+state 5
+
+    (2) declaration -> FOR IDENTIFIER IN IDENTIFIER . FLOWEROPEN FLOWERCLOSE
+
+    FLOWEROPEN      shift and go to state 7
+
+
+state 6
+
+    (1) declaration -> FOR IDENTIFIER IN NUMBER . DOT NUMBER FLOWEROPEN FLOWERCLOSE
+
+    DOT             shift and go to state 8
+
+
+state 7
+
+    (2) declaration -> FOR IDENTIFIER IN IDENTIFIER FLOWEROPEN . FLOWERCLOSE
+
+    FLOWERCLOSE     shift and go to state 9
+
+
+state 8
+
+    (1) declaration -> FOR IDENTIFIER IN NUMBER DOT . NUMBER FLOWEROPEN FLOWERCLOSE
+
+    NUMBER          shift and go to state 10
+
+
+state 9
+
+    (2) declaration -> FOR IDENTIFIER IN IDENTIFIER FLOWEROPEN FLOWERCLOSE .
+
+    $end            reduce using rule 2 (declaration -> FOR IDENTIFIER IN IDENTIFIER FLOWEROPEN FLOWERCLOSE .)
+
+
+state 10
+
+    (1) declaration -> FOR IDENTIFIER IN NUMBER DOT NUMBER . FLOWEROPEN FLOWERCLOSE
+
+    FLOWEROPEN      shift and go to state 11
+
+
+state 11
+
+    (1) declaration -> FOR IDENTIFIER IN NUMBER DOT NUMBER FLOWEROPEN . FLOWERCLOSE
+
+    FLOWERCLOSE     shift and go to state 12
+
+
+state 12
+
+    (1) declaration -> FOR IDENTIFIER IN NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE .
+
+    $end            reduce using rule 1 (declaration -> FOR IDENTIFIER IN NUMBER DOT NUMBER FLOWEROPEN FLOWERCLOSE .)
+
