@@ -1,2 +1,2 @@
-# afll
-afll mini project , hard coded compiler for rust syntax
+# Rust Syntax Checker
+Automata project to implement syntax validation for 5 specific Rust Programming Language constructs, written in python using PLY tools.
